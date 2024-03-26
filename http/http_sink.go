@@ -3,6 +3,7 @@ package http
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -10,6 +11,7 @@ import (
 	"net"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	core "github.com/flipkart-incubator/go-dmux/core"
@@ -250,7 +252,9 @@ func (h *HTTPSink) execute(method, url string, headers map[string]string,
 		}
 	}()
 
+	url = strings.Replace(url, "#", "%23", -1)
 	//build request
+	fmt.Println("Url being used is ", url)
 	request, err := http.NewRequest(method, url, payload)
 	if err != nil {
 		log.Printf("failed in request build %s %s \n", url, err.Error())
