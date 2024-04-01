@@ -3,6 +3,7 @@ package core
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/cenkalti/backoff"
 	sideline_module "github.com/flipkart-incubator/go-dmux/sideline"
 	"log"
@@ -280,10 +281,10 @@ func shutdown(ch []chan interface{}, wg *sync.WaitGroup) {
 func setupWithSideline(size, qsize, batchSize int, sink Sink, source Source, version int, sideline Sideline, sidelineImpl sideline_module.CheckMessageSideline) ([]chan interface{}, *sync.WaitGroup) {
 	if version == 1 && batchSize == 1 {
 		if sidelineImpl != nil {
-			log.Printf("Calling simpleSetupWithSideline \n")
+			fmt.Printf("Calling simpleSetupWithSideline \n")
 			return simpleSetupWithSideline(size, qsize, sink, source, sideline, sidelineImpl)
 		} else {
-			log.Printf("Calling simpleSetup \n")
+			fmt.Printf("Calling simpleSetup \n")
 			return simpleSetup(size, qsize, sink)
 		}
 	} else {
@@ -550,7 +551,7 @@ func simpleSetupWithSideline(size, qsize int, sink Sink, source Source, sideline
 	ch := make([]chan interface{}, size)
 	sidelineChannel := make([]chan ChannelObject, size)
 	sinkChannel := make([]chan ChannelObject, size)
-	log.Printf("Inside simpleSetupWithSideline \n")
+	fmt.Printf("Inside simpleSetupWithSideline \n")
 	for i := 0; i < size; i++ {
 		sinkChannel[i] = make(chan ChannelObject, qsize)
 		go sinkConsume(sink, sinkChannel, i, sideline, sidelineChannel)
