@@ -2,6 +2,7 @@ package connection
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/flipkart-incubator/go-dmux/offset_monitor"
 	sideline_models "github.com/flipkart-incubator/go-dmux/sideline"
 	"hash/fnv"
@@ -67,8 +68,10 @@ func (c *KafkaHTTPConn) Run() {
 	dmux := core.GetDmux(conf.Dmux, d)
 	var optionalParams core.DmuxOptionalParams = core.DmuxOptionalParams{c.EnableDebugLog}
 	if c.SidelineImpl != nil {
+		fmt.Println("sideline impl is present")
 		dmux.ConnectWithSideline(src, sk, c.SidelineImpl.(sideline_models.CheckMessageSideline), optionalParams)
 	} else {
+		fmt.Println("sideline impl is abresent")
 		dmux.ConnectWithSideline(src, sk, nil, optionalParams)
 	}
 	dmux.Join()

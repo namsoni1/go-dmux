@@ -226,7 +226,7 @@ func getStopMsg() ControlMsg {
 }
 
 func (d *Dmux) runWithSideline(source Source, sink Sink, sidelineImpl sideline_module.CheckMessageSideline, optionalParams DmuxOptionalParams) {
-
+	fmt.Printf("running with sideline")
 	ch, wg := setupWithSideline(d.size, d.sinkQSize, d.batchSize, sink, source, d.version, d.sideline, sidelineImpl)
 	in := make(chan interface{}, d.sourceQSize)
 	//start source
