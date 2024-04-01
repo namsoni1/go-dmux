@@ -43,7 +43,7 @@ func (c *KafkaFoxtrotConn) Run() {
 	log.Println("starting kafka_foxtrot with conf", conf)
 	if c.EnableDebugLog {
 		// enable sarama logs if booted with debug logs
-		log.Println("enabling sarama logs")
+		log.Println("enabling sarama  logs")
 		sarama.Logger = log.New(os.Stdout, "[Sarama] ", log.LstdFlags)
 	}
 	kafkaMsgFactory := getKafkaFoxtrotFactory()
