@@ -31,7 +31,7 @@ func main() {
 	dmuxLogging := new(logging.DMuxLogging)
 	dmuxLogging.Start(conf.Logging)
 
-	log.Printf("config: %v \n", conf)
+	log.Printf("config of main incubator: %v \n", conf)
 
 	//start showing metrics at the endpoint
 	metrics.Start(conf.MetricPort)

@@ -1,6 +1,7 @@
 package connection
 
-import (
+import :q!
+	(
 	"encoding/json"
 	"fmt"
 	"github.com/flipkart-incubator/go-dmux/offset_monitor"
