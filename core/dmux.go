@@ -137,6 +137,7 @@ const defaultVersion int = 1
 
 // GetDmux is public method used to Get instance of a Dmux struct
 func GetDmux(conf DmuxConf, d Distributor) *Dmux {
+	fmt.Printf("GetDmux invoked %v \n", conf)
 	control := make(chan ControlMsg)
 	response := make(chan ResponseMsg)
 	err := make(chan error)

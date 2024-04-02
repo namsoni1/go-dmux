@@ -15,7 +15,7 @@ type DmuxCustom struct {
 
 func (d *DmuxCustom) DmuxStart(path string, sidelineImp interface{}) {
 	//log.Println(checkMessageSideline.SidelineMessage())
-
+	fmt.Printf("Dumx Start invoked")
 	dconf := co.DMuxConfigSetting{
 		FilePath: path,
 	}
