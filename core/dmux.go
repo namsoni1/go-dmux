@@ -436,7 +436,7 @@ func mainChannelConsumption(ch []chan interface{}, index int, source Source, sid
 			checkBytes, checkErr := sidelineImpl.CheckMessageSideline(checkSidelineMessageBytes)
 			err := json.Unmarshal(checkBytes, &check)
 			if err != nil {
-				log.Printf("error in serde of CheckMessageSidelineResponse \n" + err.Error())
+				log.Printf("error in serde of CheckMessageSidelineResponse while json unmarshal \n" + err.Error())
 				return errors.New("error in serde of CheckMessageSidelineResponse " + err.Error())
 			}
 			if checkErr != nil {
