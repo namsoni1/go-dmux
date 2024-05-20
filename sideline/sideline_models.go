@@ -3,7 +3,7 @@ package sideline
 type CheckMessageSidelineResponse struct {
 	SidelineMessage          bool
 	Version                  int32
-	MessagePresentInSideline bool
+	MessagePresentInSideline bool // If message with same entityId and offset is already present.
 }
 
 type KafkaHttpSidelineMeta struct {

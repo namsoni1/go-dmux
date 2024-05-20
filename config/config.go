@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	sideline_models "github.com/flipkart-incubator/go-dmux/sideline"
 	"io/ioutil"
 	"log"
@@ -115,9 +116,13 @@ func (s DMuxConfigSetting) GetDmuxConf() DmuxConf {
 		log.Println(err.Error())
 		os.Exit(1)
 	}
+	fmt.Println("raw complete")
 	var conf DmuxConf
 	if err := json.Unmarshal(raw, &conf); err != nil {
-		log.Println(err.Error())
+		log.Printf("error decoding sakura response: %v", err)
+		if e, ok := err.(*json.SyntaxError); ok {
+			log.Printf("syntax error at byte offset %d", e.Offset)
+		}
 		os.Exit(1)
 	}
 
